@@ -86,6 +86,7 @@ def main():
     pygame.display.set_caption('Flappy Bird')
 
     agent = DQN(2, 2)
+    agent.load()
 
     # numbers sprites for score display
     IMAGES['numbers'] = (
@@ -351,13 +352,6 @@ def mainGame(movementInfo):
 
         #####new state######
 
-        next_state=getstate(lowerPipes,pipew,playerx,playery,playerw,playerh)
-        done = crashTest[0]
-        agent.remember(state,action,reward,next_state,done)
-        state=next_state
-
-        agent.replay(batch_size)
-        count=0
 
         if crashTest[0]:
             return {
